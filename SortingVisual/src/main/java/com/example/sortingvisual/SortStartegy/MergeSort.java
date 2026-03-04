@@ -3,50 +3,58 @@ package com.example.sortingvisual.SortStartegy;
 public class MergeSort implements SortingStrategy {
     @Override
     public int[] sort(int[] array) {
-        if (array.length <= 1) {
+        int len=array.length;
+        if(len<=1){
             return array;
         }
-        int[] temp = new int[array.length];
-        mergeSort(array, temp, 0, array.length - 1);
-        return array;
-    }
-
-    private void mergeSort(int[] array, int[] temp, int left, int right) {
-        if (left >= right) {
-            return;
-        }
-        int mid = left + (right - left) / 2;
-        mergeSort(array, temp, left, mid);
-        mergeSort(array, temp, mid + 1, right);
-        merge(array, temp, left, mid, right);
-    }
-
-    private void merge(int[] array, int[] temp, int left, int mid, int right) {
-        for (int i = left; i <= right; i++) {
-            temp[i] = array[i];
-        }
-        int i = left;
-        int j = mid + 1;
-        int k = left;
-        while (i <= mid && j <= right) {
-            if (temp[i] <= temp[j]) {
-                array[k] = temp[i];
-                i++;
-            } else {
-                array[k] = temp[j];
+        int middle=len/2;
+        int [] leftArray=new int[middle];
+        int [] rightArray=new int[len-middle];
+        int i=0; // index for left array
+        int j=0; // index for right array
+        // Split the array into two halves
+        for(;i<len;i++){
+            if(i<middle){
+                leftArray[i]=array[i];
+            }
+            else{
+                rightArray[j]=array[i];
                 j++;
             }
-            k++;
         }
-        while (i <= mid) {
-            array[k] = temp[i];
+        sort(leftArray);
+        sort(rightArray);
+        merge(leftArray, rightArray, array);
+
+        return array;
+    }
+    int [] merge(int[] leftArray, int[] rightArray, int[] array) {
+        int leftSize=array.length/2;
+        int rightSize=array.length-leftSize;
+        int i=0,l=0,r=0;
+        while(l<leftSize&&r<rightSize){
+            if(leftArray[l]<rightArray[r]){
+                array[i]=leftArray[l];
+                l++;
+            }
+            else{
+                array[i]=rightArray[r];
+                r++;
+            }
             i++;
-            k++;
+
         }
-        while (j <= right) {
-            array[k] = temp[j];
-            j++;
-            k++;
+        //those are the remaining elements in left array or right array
+        while(l<leftSize){
+            array[i]=leftArray[l];
+            l++;
+            i++;
         }
+        while(r<rightSize){
+            array[i]=rightArray[r];
+            r++;
+            i++;
+        }
+        return array;
     }
 }
