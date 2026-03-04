@@ -2,7 +2,13 @@ package com.example.sortingvisual.SortStartegy;
 
 public class MergeSort implements SortingStrategy {
     @Override
-    public int[] sort(int[] array) {
+    public int[] sort(int[] array, SortStats stats) {
+        stats.startTimer();
+        mergeSort(array,stats);
+        stats.stopTimer();
+        return array;
+    }
+    public int[] mergeSort(int[] array, SortStats stats) {
         int len=array.length;
         if(len<=1){
             return array;
@@ -22,22 +28,24 @@ public class MergeSort implements SortingStrategy {
                 j++;
             }
         }
-        leftArray = sort(leftArray);
-        rightArray = sort(rightArray);
-        merge(leftArray, rightArray, array);
+        leftArray = mergeSort(leftArray, stats);
+        rightArray = mergeSort(rightArray, stats);
+        merge(leftArray, rightArray, array, stats);
 
         return array;
     }
-    int [] merge(int[] leftArray, int[] rightArray, int[] array) {
+    int [] merge(int[] leftArray, int[] rightArray, int[] array, SortStats stats) {
         int leftSize=array.length/2;
         int rightSize=array.length-leftSize;
         int i=0,l=0,r=0;
         while(l<leftSize&&r<rightSize){
+            stats.recordComparison();
             if(leftArray[l]<rightArray[r]){
                 array[i]=leftArray[l];
                 l++;
             }
             else{
+                stats.recordInterchange();
                 array[i]=rightArray[r];
                 r++;
             }
