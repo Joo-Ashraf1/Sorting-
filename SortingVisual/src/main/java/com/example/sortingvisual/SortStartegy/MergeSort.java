@@ -22,8 +22,8 @@ public class MergeSort implements SortingStrategy {
                 j++;
             }
         }
-        sort(leftArray);
-        sort(rightArray);
+        leftArray = sort(leftArray);
+        rightArray = sort(rightArray);
         merge(leftArray, rightArray, array);
 
         return array;
