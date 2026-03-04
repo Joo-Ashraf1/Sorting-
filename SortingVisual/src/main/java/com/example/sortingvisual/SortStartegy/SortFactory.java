@@ -7,7 +7,12 @@ public class SortFactory {
         }
         switch (name.toLowerCase()){
             case "insertion": return new InsertionSort();
-            case "bubble": return new
+            case "bubble": return new  BubbleSort();
+            case "selection": return new SelectionSort();
+            case "quick": return new QuickSort();
+            case "merge": return new MergeSort();
+            case "heap": return new HeapSort();
+            default: return null;
         }
     }
 }
