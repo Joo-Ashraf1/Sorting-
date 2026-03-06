@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.sortingvisual.Controllers.ComparisonController"
+      styleClass="root"
+      spacing="0"
+      prefWidth="1100" prefHeight="700">
+
+    <!-- ── Top Input Panel ─────────────────────────────────────────── -->
+    <VBox styleClass="input-section" spacing="14">
+        <padding><Insets top="16" right="20" bottom="16" left="20"/></padding>
+
+        <Label text="▸ SORTING COMPARISON" styleClass="title-label"/>
+
+        <HBox spacing="24" alignment="CENTER_LEFT">
+
+            <!-- Algorithm Checkboxes -->
+            <VBox spacing="6">
+                <Label text="ALGORITHMS" styleClass="section-label"/>
+                <HBox spacing="16">
+                    <CheckBox fx:id="comp_cbBubble"    text="Bubble"    styleClass="check-box"/>
+                    <CheckBox fx:id="comp_cbSelection" text="Selection" styleClass="check-box"/>
+                    <CheckBox fx:id="comp_cbInsertion" text="Insertion" styleClass="check-box"/>
+                    <CheckBox fx:id="comp_cbQuick"     text="Quick"     styleClass="check-box"/>
+                    <CheckBox fx:id="comp_cbMerge"     text="Merge"     styleClass="check-box"/>
+                    <CheckBox fx:id="comp_cbHeap"      text="Heap"      styleClass="check-box"/>
+                </HBox>
+            </VBox>
+
+            <!-- Separator -->
+            <Separator orientation="VERTICAL"/>
+
+            <!-- Array Types -->
+            <VBox spacing="6">
+                <Label text="ARRAY TYPE" styleClass="section-label"/>
+                <HBox spacing="16">
+                    <CheckBox fx:id="comp_cbRandom"  text="Random"           styleClass="check-box"/>
+                    <CheckBox fx:id="comp_cbSorted"  text="Sorted"           styleClass="check-box"/>
+                    <CheckBox fx:id="comp_cbInverse" text="Inversely Sorted" styleClass="check-box"/>
+                </HBox>
+            </VBox>
+
+            <!-- Separator -->
+            <Separator orientation="VERTICAL"/>
+
+            <!-- Sizes -->
+            <VBox spacing="6">
+                <Label text="SIZES (comma-separated, max 10000)" styleClass="section-label"/>
+                <TextField fx:id="comp_tfSizes" prefWidth="300"
+                           promptText="100, 500, 1000, 5000, 10000"/>
+            </VBox>
+
+            <!-- Runs -->
+            <VBox spacing="6">
+                <Label text="RUNS" styleClass="section-label"/>
+                <TextField fx:id="comp_tfRuns" prefWidth="70" promptText="5"/>
+            </VBox>
+
+        </HBox>
+
+        <!-- Action Buttons -->
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Button fx:id="comp_btnRun"   text="▶  RUN COMPARISON"  onAction="#onRun"      styleClass="btn-primary"/>
+            <Button fx:id="comp_btnFile"  text="⬆  LOAD FILE(S)"    onAction="#onLoadFile" styleClass="btn-secondary"/>
+            <Button fx:id="comp_btnClear" text="✕  CLEAR TABLE"     onAction="#onClear"    styleClass="btn-danger"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="comp_statusLabel" text="Ready." styleClass="stat-label"/>
+        </HBox>
+
+        <ProgressBar fx:id="comp_progress" prefWidth="Infinity" prefHeight="3"
+                     styleClass="progress-bar" visible="false"/>
+
+    </VBox>
+
+    
+    <TableView fx:id="comp_table" VBox.vgrow="ALWAYS" styleClass="table-view">
+        <columns>
+            <TableColumn fx:id="col_algorithm"    text="ALGORITHM"     prefWidth="140"/>
+            <TableColumn fx:id="col_size"         text="SIZE"          prefWidth="80"/>
+            <TableColumn fx:id="col_mode"         text="ARRAY MODE"    prefWidth="140"/>
+            <TableColumn fx:id="col_runs"         text="RUNS"          prefWidth="60"/>
+            <TableColumn fx:id="col_avg"          text="AVG TIME"      prefWidth="110"/>
+            <TableColumn fx:id="col_min"          text="MIN TIME"      prefWidth="110"/>
+            <TableColumn fx:id="col_max"          text="MAX TIME"      prefWidth="110"/>
+            <TableColumn fx:id="col_comparisons"  text="COMPARISONS"   prefWidth="130"/>
+            <TableColumn fx:id="col_interchanges" text="INTERCHANGES"  prefWidth="130"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+
+</VBox>

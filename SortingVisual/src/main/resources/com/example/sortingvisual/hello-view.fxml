@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.sortingvisual.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<TabPane xmlns:fx="http://javafx.com/fxml/1"
+         tabClosingPolicy="UNAVAILABLE"
+         styleClass="tab-pane"
+         prefWidth="1100" prefHeight="780">
+
+    <stylesheets>
+        <String fx:value="/com/example/sortingvisual/styles.css"/>
+    </stylesheets>
+
+    <Tab text="  COMPARISON  ">
+        <fx:include source="ComparisonView.fxml"/>
+    </Tab>
+
+
+    <Tab text="  VISUALIZATION  ">
+        <fx:include source="VisualizationView.fxml"/>
+    </Tab>
+
+</TabPane>

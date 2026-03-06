@@ -1,0 +1,532 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SORTING VISUALIZER — Dark Industrial / Neon Terminal Aesthetic
+   Font: "JetBrains Mono" for labels, "Exo 2" for headings
+   Palette: #0a0e1a (deep navy), #12192b (panel), #1e2d4a (card)
+            #00f5d4 (neon teal), #f72585 (neon pink), #ffd60a (gold accent)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Root ──────────────────────────────────────────────────────────────── */
+.root {
+    -fx-background-color: #0a0e1a;
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 13px;
+    -fx-text-fill: #c8d8f0;
+}
+
+/* ── Tab Pane ──────────────────────────────────────────────────────────── */
+.tab-pane {
+    -fx-background-color: #0a0e1a;
+    -fx-tab-min-height: 42px;
+    -fx-tab-max-height: 42px;
+}
+
+.tab-pane > .tab-header-area {
+    -fx-background-color: #0d1220;
+    -fx-padding: 0 0 0 0;
+    -fx-border-color: transparent transparent #1e2d4a transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: #0d1220;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 10 28 10 28;
+    -fx-cursor: hand;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-text-fill: #5a7a9f;
+    -fx-font-family: "Exo 2", "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 2px;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #12192b;
+    -fx-border-color: transparent transparent #00f5d4 transparent;
+    -fx-border-width: 0 0 3 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+    -fx-text-fill: #00f5d4;
+}
+
+/*.tab-pane > .tab-header-area > .headers-region > .tab:hover:!selected > .tab-container > .tab-label {*/
+/*    -fx-text-fill: #8ab4d4;*/
+/*}*/
+
+.tab-pane > .tab-content-area {
+    -fx-background-color: #0a0e1a;
+    -fx-padding: 0;
+}
+
+/* ── Scroll Pane ───────────────────────────────────────────────────────── */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: #0d1220;
+    -fx-pref-width: 8px;
+    -fx-pref-height: 8px;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #1e3a5f;
+    -fx-background-radius: 4px;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+}
+
+/* ── Panels / Cards ────────────────────────────────────────────────────── */
+.panel-dark {
+    -fx-background-color: #12192b;
+    -fx-background-radius: 4px;
+    -fx-border-color: #1e2d4a;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 12, 0, 0, 4);
+}
+
+.card {
+    -fx-background-color: #1a2540;
+    -fx-background-radius: 3px;
+    -fx-border-color: #263658;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-padding: 12 16 12 16;
+}
+
+/* ── Typography ────────────────────────────────────────────────────────── */
+.title-label {
+    -fx-font-family: "Exo 2", "Arial Black", sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #e8f4ff;
+    -fx-letter-spacing: 3px;
+}
+
+.section-label {
+    -fx-font-family: "Exo 2", "Arial", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #00f5d4;
+    -fx-letter-spacing: 2px;
+}
+
+.stat-label {
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: #8ab4d4;
+}
+
+.stat-value {
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ffd60a;
+}
+
+.algo-name-label {
+    -fx-font-family: "Exo 2", "Arial", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #c8d8f0;
+    -fx-letter-spacing: 1px;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────── */
+.btn-primary {
+    -fx-background-color: #00b894;
+    -fx-text-fill: #0a0e1a;
+    -fx-font-family: "Exo 2", "Arial", sans-serif;
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 1.5px;
+    -fx-background-radius: 3px;
+    -fx-cursor: hand;
+    -fx-padding: 10 24 10 24;
+    -fx-effect: dropshadow(gaussian, rgba(0,245,212,0.4), 8, 0, 0, 2);
+}
+
+.btn-primary:hover {
+    -fx-background-color: #00f5d4;
+    -fx-effect: dropshadow(gaussian, rgba(0,245,212,0.7), 14, 0, 0, 3);
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #00c9a7;
+    -fx-effect: dropshadow(gaussian, rgba(0,245,212,0.2), 4, 0, 0, 1);
+}
+
+.btn-primary:disabled {
+    -fx-background-color: #1e3a5f;
+    -fx-text-fill: #3a5a7f;
+    -fx-effect: none;
+    -fx-cursor: default;
+}
+
+.btn-danger {
+    -fx-background-color: #c0392b;
+    -fx-text-fill: #fff0f0;
+    -fx-font-family: "Exo 2", "Arial", sans-serif;
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 1.5px;
+    -fx-background-radius: 3px;
+    -fx-cursor: hand;
+    -fx-padding: 10 24 10 24;
+    -fx-effect: dropshadow(gaussian, rgba(247,37,133,0.35), 8, 0, 0, 2);
+}
+
+.btn-danger:hover {
+    -fx-background-color: #f72585;
+    -fx-effect: dropshadow(gaussian, rgba(247,37,133,0.65), 14, 0, 0, 3);
+}
+
+.btn-danger:disabled {
+    -fx-background-color: #2a1020;
+    -fx-text-fill: #5a2a40;
+    -fx-effect: none;
+    -fx-cursor: default;
+}
+
+.btn-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8ab4d4;
+    -fx-font-family: "Exo 2", "Arial", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 1px;
+    -fx-background-radius: 3px;
+    -fx-border-color: #2a4060;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-cursor: hand;
+    -fx-padding: 8 18 8 18;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #1a2d45;
+    -fx-border-color: #4a7090;
+    -fx-text-fill: #c8d8f0;
+}
+
+/* ── Text Fields & Combo Boxes ─────────────────────────────────────────── */
+.text-field, .text-area {
+    -fx-background-color: #0d1525;
+    -fx-text-fill: #c8d8f0;
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 13px;
+    -fx-border-color: #1e3050;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-padding: 8 12 8 12;
+    -fx-prompt-text-fill: #3a5a7f;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: #00f5d4;
+    -fx-effect: dropshadow(gaussian, rgba(0,245,212,0.2), 6, 0, 0, 0);
+}
+
+.combo-box {
+    -fx-background-color: #0d1525;
+    -fx-border-color: #1e3050;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-padding: 4 8 4 8;
+    -fx-cursor: hand;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #c8d8f0;
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 12px;
+    -fx-background-color: transparent;
+    -fx-padding: 4 8 4 8;
+}
+
+.combo-box:focused {
+    -fx-border-color: #00f5d4;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #4a7090;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #12192b;
+    -fx-border-color: #1e3050;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 16, 0, 0, 4);
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8ab4d4;
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 12px;
+    -fx-padding: 8 12 8 12;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: #1a2d45;
+    -fx-text-fill: #00f5d4;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: #1e3a5f;
+    -fx-text-fill: #00f5d4;
+}
+
+/* ── Slider ────────────────────────────────────────────────────────────── */
+.slider .track {
+    -fx-background-color: #1e2d4a;
+    -fx-background-radius: 2px;
+    -fx-pref-height: 4px;
+}
+
+.slider .thumb {
+    -fx-background-color: #00f5d4;
+    -fx-background-radius: 8px;
+    -fx-pref-width: 16px;
+    -fx-pref-height: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0,245,212,0.5), 6, 0, 0, 0);
+    -fx-cursor: hand;
+}
+
+.slider .thumb:hover {
+    -fx-background-color: #00ffe8;
+    -fx-effect: dropshadow(gaussian, rgba(0,245,212,0.8), 10, 0, 0, 0);
+}
+
+.slider:focused .thumb {
+    -fx-effect: dropshadow(gaussian, rgba(0,245,212,0.9), 12, 0, 0, 0);
+}
+
+/* ── CheckBox ──────────────────────────────────────────────────────────── */
+.check-box .box {
+    -fx-background-color: #0d1525;
+    -fx-border-color: #2a4060;
+    -fx-border-width: 1px;
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-pref-width: 16px;
+    -fx-pref-height: 16px;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #00b894;
+    -fx-border-color: #00f5d4;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #0a0e1a;
+}
+
+.check-box .label {
+    -fx-text-fill: #8ab4d4;
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 12px;
+    -fx-padding: 0 0 0 6;
+}
+
+.check-box:hover .label {
+    -fx-text-fill: #c8d8f0;
+}
+
+/* ── Table View ────────────────────────────────────────────────────────── */
+.table-view {
+    -fx-background-color: #0d1220;
+    -fx-border-color: #1e2d4a;
+    -fx-border-width: 1px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #0d1525;
+    -fx-border-color: transparent transparent #1e3050 transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #1e2d4a transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-size: 40px;
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "Exo 2", "Arial", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #00f5d4;
+    -fx-letter-spacing: 1px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 8;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #141e2f transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgba(26, 37, 64, 0.4);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(0, 245, 212, 0.08);
+}
+
+/*.table-row-cell:hover:!selected {*/
+/*    -fx-background-color: rgba(30, 45, 74, 0.6);*/
+/*}*/
+
+.table-cell {
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: #8ab4d4;
+    -fx-padding: 8 12 8 12;
+    -fx-alignment: center-left;
+    -fx-border-color: transparent;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: #3a5a7f;
+    -fx-font-size: 13px;
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+}
+
+/* ── Progress Bar ──────────────────────────────────────────────────────── */
+.progress-bar {
+    -fx-background-color: #1e2d4a;
+    -fx-background-radius: 2px;
+    -fx-pref-height: 4px;
+}
+
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #00b894, #00f5d4);
+    -fx-background-radius: 2px;
+    -fx-background-insets: 0;
+}
+
+.progress-bar .track {
+    -fx-background-color: #1e2d4a;
+    -fx-background-radius: 2px;
+}
+
+/* ── Separator ─────────────────────────────────────────────────────────── */
+.separator .line {
+    -fx-border-color: #1e2d4a;
+    -fx-border-width: 1px;
+}
+
+/* ── Specific Component Styles ─────────────────────────────────────────── */
+.vis-grid-pane {
+    -fx-background-color: #0a0e1a;
+    -fx-padding: 16;
+    -fx-hgap: 12;
+    -fx-vgap: 12;
+}
+
+.vis-cell {
+    -fx-background-color: #12192b;
+    -fx-background-radius: 4px;
+    -fx-border-color: #1e2d4a;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-padding: 8;
+}
+
+.vis-algo-header {
+    -fx-font-family: "Exo 2", "Arial", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 2px;
+    -fx-padding: 4 0 6 0;
+}
+
+/* Algorithm color coding */
+.color-bubble    { -fx-text-fill: #00f5d4; }
+.color-selection { -fx-text-fill: #f72585; }
+.color-insertion { -fx-text-fill: #ffd60a; }
+.color-quick     { -fx-text-fill: #4cc9f0; }
+.color-merge     { -fx-text-fill: #7209b7; }
+.color-heap      { -fx-text-fill: #f77f00; }
+
+.stats-mini {
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 10px;
+    -fx-text-fill: #5a7a9f;
+}
+
+/* ── Input Area ────────────────────────────────────────────────────────── */
+.input-section {
+    -fx-background-color: #0f1626;
+    -fx-padding: 16 20 16 20;
+    -fx-border-color: transparent transparent #1e2d4a transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* ── Neon glow text effect ─────────────────────────────────────────────── */
+.neon-teal {
+    -fx-text-fill: #00f5d4;
+    -fx-effect: dropshadow(gaussian, rgba(0,245,212,0.6), 8, 0, 0, 0);
+}
+
+.neon-pink {
+    -fx-text-fill: #f72585;
+    -fx-effect: dropshadow(gaussian, rgba(247,37,133,0.6), 8, 0, 0, 0);
+}
+
+.neon-gold {
+    -fx-text-fill: #ffd60a;
+    -fx-effect: dropshadow(gaussian, rgba(255,214,10,0.5), 8, 0, 0, 0);
+}
+
+/* ── Tooltip ───────────────────────────────────────────────────────────── */
+.tooltip {
+    -fx-background-color: #12192b;
+    -fx-text-fill: #c8d8f0;
+    -fx-border-color: #1e3050;
+    -fx-border-width: 1px;
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 11px;
+    -fx-padding: 6 10 6 10;
+}
+
+/* ── Speed label ───────────────────────────────────────────────────────── */
+.speed-label {
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #4a7090;
+    -fx-min-width: 60px;
+}

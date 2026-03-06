@@ -7,6 +7,7 @@ module com.example.sortingvisual {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires javafx.graphics;
 
     opens com.example.sortingvisual to javafx.fxml;
     exports com.example.sortingvisual;
