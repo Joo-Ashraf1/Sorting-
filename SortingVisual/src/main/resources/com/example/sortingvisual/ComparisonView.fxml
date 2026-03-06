@@ -67,6 +67,8 @@
             <Button fx:id="comp_btnRun"   text="▶  RUN COMPARISON"  onAction="#onRun"      styleClass="btn-primary"/>
             <Button fx:id="comp_btnFile"  text="⬆  LOAD FILE(S)"    onAction="#onLoadFile" styleClass="btn-secondary"/>
             <Button fx:id="comp_btnClear" text="✕  CLEAR TABLE"     onAction="#onClear"    styleClass="btn-danger"/>
+            <Button fx:id="comp_btnExport" text="⬇  EXPORT CSV"
+                    onAction="#onExportCSV" styleClass="btn-secondary"/>
             <Region HBox.hgrow="ALWAYS"/>
             <Label fx:id="comp_statusLabel" text="Ready." styleClass="stat-label"/>
         </HBox>

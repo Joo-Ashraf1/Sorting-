@@ -331,5 +331,43 @@ public class ComparisonController implements Initializable {
         public long    getComparisons() { return comparisons.get(); }
         public long    getInterchanges(){ return interchanges.get();}
     }
+    @FXML
+    private void onExportCSV() {
+        if (tableData.isEmpty()) {
+            status("No data to export. Run a comparison first.");
+            return;
+        }
 
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Save Results as CSV");
+        fc.setInitialFileName("sorting_results.csv");
+        fc.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        File file = fc.showSaveDialog(comp_btnRun.getScene().getWindow());
+        if (file == null) return;
+
+        try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
+            // Header
+            pw.println("Algorithm,Size,Mode,Runs,AvgMs,MinMs,MaxMs,Comparisons,Interchanges");
+
+            // Rows
+            for (ResultRow row : tableData) {
+                pw.printf("%s,%d,%s,%d,%s,%s,%s,%d,%d%n",
+                        row.getAlgorithm(),
+                        row.getSize(),
+                        row.getMode(),
+                        row.getRuns(),
+                        row.getAvgMs().replace(" ms", ""),
+                        row.getMinMs().replace(" ms", ""),
+                        row.getMaxMs().replace(" ms", ""),
+                        row.getComparisons(),
+                        row.getInterchanges()
+                );
+            }
+            status("Exported to " + file.getAbsolutePath());
+        } catch (IOException e) {
+            status("Export failed: " + e.getMessage());
+        }
+    }
 }
