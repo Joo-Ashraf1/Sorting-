@@ -4,14 +4,15 @@
 <?import javafx.scene.layout.*?>
 
 
+<?import java.lang.String?>
 <TabPane xmlns:fx="http://javafx.com/fxml/1"
          tabClosingPolicy="UNAVAILABLE"
          styleClass="tab-pane"
          prefWidth="1100" prefHeight="780">
 
-    <stylesheets>
-        <String fx:value="/com/example/sortingvisual/styles.css"/>
-    </stylesheets>
+<!--    <stylesheets>-->
+<!--        <String fx:value="/com/example/sortingvisual/Styles.css"/>-->
+<!--    </stylesheets>-->
 
     <Tab text="  COMPARISON  ">
         <fx:include source="ComparisonView.fxml"/>

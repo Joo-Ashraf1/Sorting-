@@ -14,8 +14,8 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Parent fxmlRoot = fxmlLoader.load();
-        Scene scene = new Scene(fxmlRoot,450,450);
-        // scene.getStylesheets().add(HelloApplication.class.getResource("Styles.css").toExternalForm());
+        Scene scene = new Scene(fxmlRoot,1100,780);
+        scene.getStylesheets().add(HelloApplication.class.getResource("/com/example/sortingvisual/Styles.css").toExternalForm());
         Image icon=new Image("Visualisation.jpg");
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Sorting Visualizer");
