@@ -57,8 +57,8 @@
     <!-- ── 2 × 3 Visualization Grid ──────────────────────────────────── -->
     <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" fitToHeight="true"
                 styleClass="scroll-pane" hbarPolicy="NEVER">
-        <GridPane styleClass="vis-grid-pane" hgap="12" vgap="12">
-            <padding><Insets top="14" right="16" bottom="14" left="16"/></padding>
+        <GridPane styleClass="vis-grid-pane" hgap="20" vgap="20">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
 
             <!-- Column constraints: 2 equal columns -->
             <columnConstraints>
@@ -66,110 +66,104 @@
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints vgrow="ALWAYS" minHeight="200"/>
-                <RowConstraints vgrow="ALWAYS" minHeight="200"/>
-                <RowConstraints vgrow="ALWAYS" minHeight="200"/>
+                <RowConstraints vgrow="ALWAYS" minHeight="240"/>
+                <RowConstraints vgrow="ALWAYS" minHeight="240"/>
+                <RowConstraints vgrow="ALWAYS" minHeight="240"/>
             </rowConstraints>
 
             <!-- ── Cell 0,0 — Bubble Sort ─────────────────────────── -->
             <VBox GridPane.columnIndex="0" GridPane.rowIndex="0"
-                  styleClass="vis-cell" spacing="4">
+                  styleClass="vis-cell" spacing="8">
+                <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
                 <HBox alignment="CENTER_LEFT" spacing="10">
                     <Label text="BUBBLE SORT" styleClass="vis-algo-header color-bubble"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="vis_done_bubble"  text="●" styleClass="stats-mini neon-teal"/>
+                    <Label fx:id="vis_done_bubble" text="● IDLE" styleClass="stats-mini neon-teal"/>
                 </HBox>
-                <Canvas fx:id="vis_canvas_bubble"
-                        width="480" height="180"
-                        VBox.vgrow="ALWAYS"/>
-                <HBox spacing="16">
-                    <Label fx:id="vis_cmp_bubble" text="CMP: 0"  styleClass="stats-mini"/>
-                    <Label fx:id="vis_swp_bubble" text="SWP: 0"  styleClass="stats-mini"/>
+                <Canvas fx:id="vis_canvas_bubble" width="480" height="170" VBox.vgrow="ALWAYS"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="vis_cmp_bubble" text="CMP: 0" styleClass="stat-badge stat-badge-cmp"/>
+                    <Label fx:id="vis_swp_bubble" text="SWP: 0" styleClass="stat-badge stat-badge-swp"/>
                 </HBox>
             </VBox>
 
             <!-- ── Cell 1,0 — Selection Sort ──────────────────────── -->
             <VBox GridPane.columnIndex="1" GridPane.rowIndex="0"
-                  styleClass="vis-cell" spacing="4">
+                  styleClass="vis-cell" spacing="8">
+                <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
                 <HBox alignment="CENTER_LEFT" spacing="10">
                     <Label text="SELECTION SORT" styleClass="vis-algo-header color-selection"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="vis_done_selection" text="●" styleClass="stats-mini neon-pink"/>
+                    <Label fx:id="vis_done_selection" text="● IDLE" styleClass="stats-mini neon-pink"/>
                 </HBox>
-                <Canvas fx:id="vis_canvas_selection"
-                        width="480" height="180"
-                        VBox.vgrow="ALWAYS"/>
-                <HBox spacing="16">
-                    <Label fx:id="vis_cmp_selection" text="CMP: 0" styleClass="stats-mini"/>
-                    <Label fx:id="vis_swp_selection" text="SWP: 0" styleClass="stats-mini"/>
+                <Canvas fx:id="vis_canvas_selection" width="480" height="170" VBox.vgrow="ALWAYS"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="vis_cmp_selection" text="CMP: 0" styleClass="stat-badge stat-badge-cmp"/>
+                    <Label fx:id="vis_swp_selection" text="SWP: 0" styleClass="stat-badge stat-badge-swp"/>
                 </HBox>
             </VBox>
 
             <!-- ── Cell 0,1 — Insertion Sort ──────────────────────── -->
             <VBox GridPane.columnIndex="0" GridPane.rowIndex="1"
-                  styleClass="vis-cell" spacing="4">
+                  styleClass="vis-cell" spacing="8">
+                <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
                 <HBox alignment="CENTER_LEFT" spacing="10">
                     <Label text="INSERTION SORT" styleClass="vis-algo-header color-insertion"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="vis_done_insertion" text="●" styleClass="stats-mini neon-gold"/>
+                    <Label fx:id="vis_done_insertion" text="● IDLE" styleClass="stats-mini neon-gold"/>
                 </HBox>
-                <Canvas fx:id="vis_canvas_insertion"
-                        width="480" height="180"
-                        VBox.vgrow="ALWAYS"/>
-                <HBox spacing="16">
-                    <Label fx:id="vis_cmp_insertion" text="CMP: 0" styleClass="stats-mini"/>
-                    <Label fx:id="vis_swp_insertion" text="SWP: 0" styleClass="stats-mini"/>
+                <Canvas fx:id="vis_canvas_insertion" width="480" height="170" VBox.vgrow="ALWAYS"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="vis_cmp_insertion" text="CMP: 0" styleClass="stat-badge stat-badge-cmp"/>
+                    <Label fx:id="vis_swp_insertion" text="SWP: 0" styleClass="stat-badge stat-badge-swp"/>
                 </HBox>
             </VBox>
 
             <!-- ── Cell 1,1 — Quick Sort ───────────────────────────── -->
             <VBox GridPane.columnIndex="1" GridPane.rowIndex="1"
-                  styleClass="vis-cell" spacing="4">
+                  styleClass="vis-cell" spacing="8">
+                <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
                 <HBox alignment="CENTER_LEFT" spacing="10">
                     <Label text="QUICK SORT" styleClass="vis-algo-header color-quick"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="vis_done_quick" text="●" styleClass="stats-mini"/>
+                    <Label fx:id="vis_done_quick" text="● IDLE" styleClass="stats-mini"/>
                 </HBox>
-                <Canvas fx:id="vis_canvas_quick"
-                        width="480" height="180"
-                        VBox.vgrow="ALWAYS"/>
-                <HBox spacing="16">
-                    <Label fx:id="vis_cmp_quick" text="CMP: 0" styleClass="stats-mini"/>
-                    <Label fx:id="vis_swp_quick" text="SWP: 0" styleClass="stats-mini"/>
+                <Canvas fx:id="vis_canvas_quick" width="480" height="170" VBox.vgrow="ALWAYS"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="vis_cmp_quick" text="CMP: 0" styleClass="stat-badge stat-badge-cmp"/>
+                    <Label fx:id="vis_swp_quick" text="SWP: 0" styleClass="stat-badge stat-badge-swp"/>
                 </HBox>
             </VBox>
 
             <!-- ── Cell 0,2 — Merge Sort ───────────────────────────── -->
             <VBox GridPane.columnIndex="0" GridPane.rowIndex="2"
-                  styleClass="vis-cell" spacing="4">
+                  styleClass="vis-cell" spacing="8">
+                <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
                 <HBox alignment="CENTER_LEFT" spacing="10">
                     <Label text="MERGE SORT" styleClass="vis-algo-header color-merge"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="vis_done_merge" text="●" styleClass="stats-mini"/>
+                    <Label fx:id="vis_done_merge" text="● IDLE" styleClass="stats-mini"/>
                 </HBox>
-                <Canvas fx:id="vis_canvas_merge"
-                        width="480" height="180"
-                        VBox.vgrow="ALWAYS"/>
-                <HBox spacing="16">
-                    <Label fx:id="vis_cmp_merge" text="CMP: 0" styleClass="stats-mini"/>
-                    <Label fx:id="vis_swp_merge" text="SWP: 0" styleClass="stats-mini"/>
+                <Canvas fx:id="vis_canvas_merge" width="480" height="170" VBox.vgrow="ALWAYS"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="vis_cmp_merge" text="CMP: 0" styleClass="stat-badge stat-badge-cmp"/>
+                    <Label fx:id="vis_swp_merge" text="SWP: 0" styleClass="stat-badge stat-badge-swp"/>
                 </HBox>
             </VBox>
 
             <!-- ── Cell 1,2 — Heap Sort ────────────────────────────── -->
             <VBox GridPane.columnIndex="1" GridPane.rowIndex="2"
-                  styleClass="vis-cell" spacing="4">
+                  styleClass="vis-cell" spacing="8">
+                <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
                 <HBox alignment="CENTER_LEFT" spacing="10">
                     <Label text="HEAP SORT" styleClass="vis-algo-header color-heap"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Label fx:id="vis_done_heap" text="●" styleClass="stats-mini"/>
+                    <Label fx:id="vis_done_heap" text="● IDLE" styleClass="stats-mini"/>
                 </HBox>
-                <Canvas fx:id="vis_canvas_heap"
-                        width="480" height="180"
-                        VBox.vgrow="ALWAYS"/>
-                <HBox spacing="16">
-                    <Label fx:id="vis_cmp_heap" text="CMP: 0" styleClass="stats-mini"/>
-                    <Label fx:id="vis_swp_heap" text="SWP: 0" styleClass="stats-mini"/>
+                <Canvas fx:id="vis_canvas_heap" width="480" height="170" VBox.vgrow="ALWAYS"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="vis_cmp_heap" text="CMP: 0" styleClass="stat-badge stat-badge-cmp"/>
+                    <Label fx:id="vis_swp_heap" text="SWP: 0" styleClass="stat-badge stat-badge-swp"/>
                 </HBox>
             </VBox>
 

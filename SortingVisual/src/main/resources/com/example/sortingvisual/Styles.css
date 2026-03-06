@@ -530,3 +530,30 @@
     -fx-text-fill: #4a7090;
     -fx-min-width: 60px;
 }
+.stat-badge {
+    -fx-font-family: "JetBrains Mono", "Courier New", monospace;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-padding: 4 12 4 12;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-border-width: 1px;
+    -fx-min-width: 100px;
+    -fx-alignment: CENTER;
+}
+
+/* Comparisons badge — teal tint */
+.stat-badge-cmp {
+    -fx-text-fill: #00f5d4;
+    -fx-background-color: rgba(0, 245, 212, 0.08);
+    -fx-border-color: rgba(0, 245, 212, 0.35);
+    -fx-effect: dropshadow(gaussian, rgba(0,245,212,0.2), 6, 0, 0, 0);
+}
+
+/* Swaps badge — pink tint */
+.stat-badge-swp {
+    -fx-text-fill: #f72585;
+    -fx-background-color: rgba(247, 37, 133, 0.08);
+    -fx-border-color: rgba(247, 37, 133, 0.35);
+    -fx-effect: dropshadow(gaussian, rgba(247,37,133,0.2), 6, 0, 0, 0);
+}
