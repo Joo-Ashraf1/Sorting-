@@ -100,7 +100,8 @@ public class Visualizablesortrecorder implements SortingStrategy {
     }
 
     private int partition(int[] a, int lo, int hi, SortStats s) {
-        int pivIdx = lo + (hi - lo) / 2;
+        java.util.Random rand=new java.util.Random();
+        int pivIdx=rand.nextInt(hi-lo+1)+lo;
         swap(a, pivIdx, hi, s);
         int pivot = a[hi], i = lo - 1;
         for (int j = lo; j < hi; j++) {
@@ -115,35 +116,45 @@ public class Visualizablesortrecorder implements SortingStrategy {
 
     private int[] mergeSort(int[] a, SortStats s) {
         s.startTimer();
-        mergeSortRec(a, s);
+        mergeRec(a, 0, a.length - 1, s);
         s.stopTimer();
         return a;
     }
 
-    private void mergeSortRec(int[] a, SortStats s) {
-        if (a.length <= 1) return;
-        int mid = a.length / 2;
-        int[] left  = java.util.Arrays.copyOfRange(a, 0, mid);
-        int[] right = java.util.Arrays.copyOfRange(a, mid, a.length);
-        mergeSortRec(left, s);
-        mergeSortRec(right, s);
-        mergeInto(a, left, right, s);
+    private void mergeRec(int[] a, int lo, int hi, SortStats s) {
+        if (lo >= hi) return;
+        int mid = lo + (hi - lo) / 2;
+        snap(a, lo, hi, s);
+        mergeRec(a, lo, mid, s);
+        mergeRec(a, mid + 1, hi, s);
+        merge(a, lo, mid, hi, s);
     }
 
-    private void mergeInto(int[] dest, int[] left, int[] right, SortStats s) {
-        int l = 0, r = 0, i = 0;
-        while (l < left.length && r < right.length) {
+    private void merge(int[] a, int lo, int mid, int hi, SortStats s) {
+        int leftLen  = mid - lo + 1;
+        int rightLen = hi - mid;
+        int[] left  = new int[leftLen];
+        int[] right = new int[rightLen];
+
+        for (int i = 0; i < leftLen;  i++) left[i]  = a[lo + i];
+        for (int i = 0; i < rightLen; i++) right[i] = a[mid + 1 + i];
+
+        int l = 0, r = 0, k = lo;
+        while (l < leftLen && r < rightLen) {
             s.recordComparison();
+            snap(a, lo + l, mid + 1 + r, s);
             if (left[l] <= right[r]) {
-                dest[i++] = left[l++];
+                a[k] = left[l++];
             } else {
-                dest[i++] = right[r++];
+                a[k] = right[r++];
                 s.recordInterchange();
             }
-            snap(dest, i - 1, -1, s);
+            snap(a, k, -1, s);
+            k++;
         }
-        while (l < left.length) { dest[i++] = left[l++]; snap(dest, i-1, -1, s); }
-        while (r < right.length){ dest[i++] = right[r++]; snap(dest, i-1, -1, s); }
+        while (l < leftLen)  { a[k] = left[l++];  snap(a, k, -1, s); k++; }
+        while (r < rightLen) { a[k] = right[r++]; snap(a, k, -1, s); k++; }
+        snap(a, lo, hi, s);
     }
 
 

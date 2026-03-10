@@ -199,8 +199,7 @@ public class Visualizationcontroller implements Initializable {
         gc.setLineWidth(1);
         gc.strokeRect(0.5, 0.5, w - 1, h - 1);
     }
-    // i want to handle if the array have negativee numbers
- 
+
     private void drawBars(Canvas canvas, int[] array, int idxA, int idxB,
                           Color baseColor, boolean allSorted) {
         if (array == null || array.length == 0) return;
@@ -208,11 +207,20 @@ public class Visualizationcontroller implements Initializable {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         double cw = canvas.getWidth();
         double ch = canvas.getHeight();
+        int n=array.length;
+        int [] sorted=array.clone();
+        java.util.Arrays.sort(sorted);
+        int [] ranks=new int[n];
+        for (int i=0; i<n; i++) {
+            ranks[i]=java.util.Arrays.binarySearch(sorted, array[i]);
+            if (ranks[i]<0) ranks[i]=0;
+
+        }
+
 
         gc.setFill(Color.web("#0a0e1a"));
         gc.fillRect(0, 0, cw, ch);
 
-        
         gc.setStroke(Color.web("#1a2540"));
         gc.setLineWidth(0.5);
         for (int row = 1; row < 4; row++) {
@@ -220,43 +228,46 @@ public class Visualizationcontroller implements Initializable {
             gc.strokeLine(0, y, cw, y);
         }
 
-        int n = array.length;
-        int min = array[0], max = array[0];
-        for (int v : array) { if (v < min) min = v; if (v > max) max = v; }
 
-        
-        int shift = -min;  
-        int range = (max - min);
-        if (range == 0) range = 1; // i had corner case with {3,3,3,3}
-
-        double padding = 2.0;
-        double barW  = Math.max(1.0, (cw - padding * (n + 1)) / n);
-        double maxBarH = ch - 4;
-
-        for (int i = 0; i < n; i++) {
-            double normalised = (double)(array[i] + shift) / range; // 0.0 – 1.0
-            double barH = Math.max(2.0, normalised * maxBarH);
-            double x = padding + i * (barW + padding);
-            double y = ch - barH;
-
-            Color barColor;
+        double padding = 1.5;
+        double barW    = Math.max(1.0, (cw - padding * (n + 1)) / n);
+        double maxBarH = ch - 6;
+        for(int i=0; i<n; i++) {
+            double normalised= (double) (ranks[i]+1)/n;
+            double barH=Math.max(2,normalised*maxBarH);
+            double x    = padding + i * (barW + padding);
+            double y    = ch - barH;
+            Color  barColor;
+            double opacity;
             if (allSorted) {
                 barColor = baseColor;
-            } else if (i == idxA) {
-                barColor = Color.web("#ffffff");        // comparing: white flash
-            } else if (i == idxB) {
-                barColor = Color.web("#f72585");        
+                opacity  = 0.95;
+            } else if (i == idxA && idxA != -1) {
+                barColor = Color.WHITE;
+                opacity  = 1.0;
+            } else if (i == idxB && idxB != -1) {
+                barColor = Color.web("#f72585");
+                opacity  = 1.0;
             } else {
-                barColor = baseColor.deriveColor(0, 0.7, 0.6, 1.0);
+                barColor = baseColor.deriveColor(0, 0.65, 0.55, 1.0);
+                opacity  = 0.75;
             }
-
-            gc.setFill(barColor.deriveColor(0, 1, 1, allSorted ? 0.85 : 0.7));
+            gc.setFill(barColor.deriveColor(0, 1, 1, opacity * 0.72));
             gc.fillRect(x, y, barW, barH);
-            gc.setStroke(barColor);
-            gc.setLineWidth(1.0);
+
+            // Top edge
+            gc.setStroke(barColor.deriveColor(0, 1, 1, opacity));
+            gc.setLineWidth(i == idxA || i == idxB ? 1.5 : 1.0);
             gc.strokeLine(x, y, x + barW, y);
+
+            // Glow on highlighted bars
+            if (!allSorted && (i == idxA || i == idxB) && idxA != -1) {
+                gc.setFill(barColor.deriveColor(0, 1, 1, 0.12));
+                gc.fillRect(x - 1, y - 1, barW + 2, barH + 1);
+            }
         }
-        gc.setStroke(baseColor.deriveColor(0, 1, 1, 0.2));
+
+        gc.setStroke(baseColor.deriveColor(0, 1, 1, 0.18));
         gc.setLineWidth(1);
         gc.strokeRect(0.5, 0.5, cw - 1, ch - 1);
     }
